@@ -20,10 +20,4 @@ function App(state) {
   )
 }
 
-function mapStateToProps(state) {
-  const { statusMessages, errorMessages } = state.messagesState;
-  const { categories, articles } = state.modelsState;
-  return { statusMessages, errorMessages, categories, articles }
-}
-
-export default connect(mapStateToProps)(App)
+export default connect()(App)

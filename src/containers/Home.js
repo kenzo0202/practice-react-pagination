@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 
-function Home(props) {
+function Home() {
   return (
     <div>
       <h2>Home</h2>
@@ -12,10 +12,4 @@ function Home(props) {
   )
 }
 
-function mapStateToProps(state) {
-  const { statusMessages, errorMessages } = state.messagesState;
-  const { categories, articles } = state.modelsState;
-  return { statusMessages, errorMessages, categories, articles }
-}
-
-export default connect(mapStateToProps)(Home)
+export default connect()(Home)
