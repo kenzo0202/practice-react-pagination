@@ -1,3 +1,4 @@
+import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react'
 import { render } from 'react-dom'
@@ -9,12 +10,14 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { App, Home, Users } from './containers'
 import * as reducers from './reducers'
 import thunkMiddleware from 'redux-thunk'
+import { GrowlerReducer } from 'flash-notification-react-redux';
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 
 const store = createStoreWithMiddleware(
   combineReducers({
     ...reducers,
+    growler: GrowlerReducer,
     routing: routerReducer
   })
 )

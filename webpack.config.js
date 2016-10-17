@@ -20,8 +20,15 @@ module.exports = {
   },
   module: {
     loaders:[
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-      { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
+        test: [/\.jsx$/,  /\.js$/],
+        loaders: ['babel'],
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules/flash-notification-react-redux")
+        ]
+      },
+      { test: [/\.scss$/, /\.css$/], loader: "style-loader!css-loader" },
       { test: /\.svg$/, loader: 'url-loader?mimetype=image/svg+xml' },
       { test: /\.woff$/, loader: 'url-loader?mimetype=application/font-woff' },
       { test: /\.woff2$/, loader: 'url-loader?mimetype=application/font-woff' },

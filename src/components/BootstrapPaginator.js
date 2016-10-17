@@ -7,7 +7,7 @@ export default class BootstrapPaginator extends Component {
 
   render() {
     const { prelink, pager } = this.props;
-    const current = pager.currentPpage || 1;
+    const current = pager.page || 1;
     const rowsPerPage = pager.rowsPerPage || 10;
     const totalResult = pager.totalResults || 0;
 
@@ -16,6 +16,7 @@ export default class BootstrapPaginator extends Component {
       current: current,
       rowsPerPage: rowsPerPage,
       totalResult: totalResult,
+      pageLinks: 10,
       template: function(result) {
         const elements = [];
         const prelink = result.prelink;

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { GrowlerActions } from 'flash-notification-react-redux';
 const BASE_URL = 'http://localhost:3000'
 
 export const ADD_STATUS_MESSAGE = 'ADD_STATUS_MESSAGE'
@@ -47,12 +47,13 @@ export function fetchUsers(page = 1) {
     dispatch({type: CLEAR_ERROR_MESSAGES})
     dispatch({type: ADD_STATUS_MESSAGE, payload: ['start fetching users']})
     return axios.get(`${BASE_URL}/api/users?page=${page}`).then((response) => {
+      dispatch(GrowlerActions.showGrowlerSuccess(`GET /users?page=${page}`))
       dispatch({type: SET_USERS, payload: response.data.users })
       dispatch({type: SET_PAGER, payload: response.data.pager })
       dispatch({type: ADD_STATUS_MESSAGE, payload: 'finish fetching users'})
     }).catch((err) => {
       console.error(err.message)
-      dispatch({type: CLEAR_MESSAGE})
+      dispatch(GrowlerActions.showGrowlerError(err.message))
       dispatch({type: ADD_ERROR_MESSAGE, payload: 'fail fetching users'})
     })
   };
