@@ -33,11 +33,11 @@ export function clearMessages() {
 export const SET_USERS = 'SET_USERS'
 export const SET_PAGER = 'SET_PAGER'
 
-function setUsers(articles) {
+export function setUsers(users) {
   return {type: SET_USERS, payload: users}
 }
 
-function setPager(pager) {
+export function setPager(pager) {
   return {type: SET_PAGER, payload: pager}
 }
 

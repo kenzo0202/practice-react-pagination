@@ -1,24 +1,18 @@
 import assert from 'assert'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import * as actions from '../src/actions'
-import articleApp from '../src/reducers'
+import * as reducers from '../src/reducers'
 
 describe('modelsState', () => {
 
   const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
-  const store = createStoreWithMiddleware(articleApp)
+  const store = createStoreWithMiddleware(combineReducers(reducers))
 
-  it('categories', () => {
-    store.dispatch(actions.setCategories([{id: 1, en: 'cat1'}, {id: 2, en: 'cat2'}]))
-    let { categories } = store.getState().modelsState
-    assert.equal(categories.length, 2)
-  });
-
-  it('articles', () => {
-    store.dispatch(actions.setArticles([{id: 1, title: 'title1'}, {id: 2, title: 'title2'}]))
-    let { articles } = store.getState().modelsState
-    assert.equal(articles.length, 2)
+  it('users', () => {
+    store.dispatch(actions.setUsers([{id: 1, name: 'name001'}, {id: 2, name: 'name002'}]))
+    let { users } = store.getState().modelsState
+    assert.equal(users.length, 2)
   });
 
   it('parger', () => {

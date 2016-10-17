@@ -1,13 +1,13 @@
 import assert from 'assert'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import * as actions from '../src/actions'
-import articleApp from '../src/reducers'
+import * as reducers from '../src/reducers'
 
 describe('messagesState', () => {
 
   const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
-  const store = createStoreWithMiddleware(articleApp)
+  const store = createStoreWithMiddleware(combineReducers(reducers))
 
   it('status', () => {
     store.dispatch(actions.addStatusMessage('statusMessage1'))
